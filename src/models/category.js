@@ -1,9 +1,8 @@
-const { Model, DataTypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../connectDb");
 
-class Category extends Model {}
-
-Category.init(
+const Category = sequelize.define(
+  "Category",
   {
     name: {
       type: DataTypes.STRING,
@@ -12,15 +11,13 @@ Category.init(
     parentId: {
       type: DataTypes.INTEGER,
       references: {
-        model: "Categories",
+        model: "categories",
         key: "id",
       },
       allowNull: true,
     },
   },
   {
-    sequelize,
-    modelName: "Category",
     tableName: "categories",
   }
 );
